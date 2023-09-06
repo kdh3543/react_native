@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import CheckboxUnchecked from "../assets/checkbox-unchecked.svg";
 import CheckboxChecked from "../assets/checkbox-checked.svg";
 import DeleteIcon from "../assets/delete.svg";
@@ -8,14 +8,21 @@ import { deleteTodo, updateTodo } from "../redux/slice/todoSlice";
 
 const TodoItem = (props) => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    console.log(props);
+  }, []);
+  const update = (id) => {
+    console.log(id);
+    dispatch(updateTodo(id));
+  };
   return (
     <View style={styles.itemContainer}>
       <Pressable
         hitSlop={10}
-        onPress={() => dispatch(updateTodo(props.id))}
+        onPress={() => update(props.id)}
         style={styles.itemCheckbox}
       >
-        {props.state === "todo" ? (
+        {props.status === "todo" ? (
           <CheckboxUnchecked />
         ) : (
           <CheckboxChecked style={styles.itemCheckboxCheckedIcon} />
@@ -24,7 +31,7 @@ const TodoItem = (props) => {
       <Text
         style={[
           styles.itemText,
-          props.state === "done" ? styles.itemTextChecked : "",
+          props.status === "done" ? styles.itemTextChecked : "",
         ]}
       >
         {props.text}

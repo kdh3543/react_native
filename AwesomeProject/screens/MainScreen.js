@@ -14,8 +14,8 @@ import { useSelector } from "react-redux";
 
 function MainScreen() {
   const todos = useSelector((state) => state.todo.todos);
-  const todoTasks = todos.filter((item) => item.state === "todo");
-  const completedTasks = todos.filter((item) => item.state === "done");
+  const todoTasks = todos.filter((item) => item.status === "todo");
+  const completedTasks = todos.filter((item) => item.status === "done");
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={"default"} />
@@ -30,7 +30,7 @@ function MainScreen() {
             keyExtractor={(item) => item.id}
           />
         ) : (
-          <Text>할일이 없음</Text>
+          <Text style={styles.emptyListText}>할일이 없음</Text>
         )}
       </View>
       <View style={styles.separator} />
@@ -43,7 +43,7 @@ function MainScreen() {
             keyExtractor={(item) => item.id}
           />
         ) : (
-          <Text>완료된 일이 없음</Text>
+          <Text style={styles.emptyListText}>완료된 일이 없음</Text>
         )}
       </View>
       <InputForm />
@@ -81,5 +81,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     fontSize: 41,
     fontWeight: "500",
+  },
+  emptyListText: {
+    paddingTop: 10,
+    paddingBottom: 15,
+    paddingHorizontal: 15,
+    fontSize: 15,
+    lineHeight: 20,
+    color: "#737373",
   },
 });
