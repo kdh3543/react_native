@@ -1,12 +1,12 @@
-import MainScreen from "./screens/MainScreen";
-import { Provider } from "react-redux";
-import { store } from "./redux/store";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
-import LoginScreen from "./screens/LoginScreen";
+import MainScreen from './screens/MainScreen'
+import { Provider } from 'react-redux'
+import { store } from './redux/store'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { NavigationContainer } from '@react-navigation/native'
+import LoginScreen from './screens/LoginScreen'
 
 export default function App() {
-  const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator()
   return (
     <Provider store={store}>
       <NavigationContainer>
@@ -24,5 +24,5 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
-  );
+  )
 }

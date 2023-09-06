@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import React from 'react'
 import { StatusBar } from 'expo-status-bar'
-// import InputForm from "../components/InputForm";
+import InputForm from '../components/InputForm'
 import TodoItem from '../components/TodoItem'
 import { useSelector } from 'react-redux'
 
@@ -46,7 +46,7 @@ function MainScreen() {
           <Text style={styles.emptyListText}>완료된 일이 없음</Text>
         )}
       </View>
-      {/* <InputForm /> */}
+      <InputForm />
     </SafeAreaView>
   )
 }

@@ -1,20 +1,16 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import React, { useEffect } from "react";
-import CheckboxUnchecked from "../assets/checkbox-unchecked.svg";
-import CheckboxChecked from "../assets/checkbox-checked.svg";
-import DeleteIcon from "../assets/delete.svg";
-import { useDispatch } from "react-redux";
-import { deleteTodo, updateTodo } from "../redux/slice/todoSlice";
+import { Pressable, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect } from 'react'
+import CheckboxUnchecked from '../assets/checkbox-unchecked.svg'
+import CheckboxChecked from '../assets/checkbox-checked.svg'
+import DeleteIcon from '../assets/delete.svg'
+import { useDispatch } from 'react-redux'
+import { deleteTodo, updateTodo } from '../redux/slice/todoSlice'
 
 const TodoItem = (props) => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    console.log(props);
-  }, []);
+  const dispatch = useDispatch()
   const update = (id) => {
-    console.log(id);
-    dispatch(updateTodo(id));
-  };
+    dispatch(updateTodo(id))
+  }
   return (
     <View style={styles.itemContainer}>
       <Pressable
@@ -22,7 +18,7 @@ const TodoItem = (props) => {
         onPress={() => update(props.id)}
         style={styles.itemCheckbox}
       >
-        {props.status === "todo" ? (
+        {props.status === 'todo' ? (
           <CheckboxUnchecked />
         ) : (
           <CheckboxChecked style={styles.itemCheckboxCheckedIcon} />
@@ -31,43 +27,43 @@ const TodoItem = (props) => {
       <Text
         style={[
           styles.itemText,
-          props.status === "done" ? styles.itemTextChecked : "",
+          props.status === 'done' ? styles.itemTextChecked : '',
         ]}
       >
         {props.text}
       </Text>
       <Pressable
-        style={[styles.delBtn, props.state === "done" ? styles.delBtnDone : ""]}
+        style={[styles.delBtn, props.state === 'done' ? styles.delBtnDone : '']}
         hitSlop={10}
         onPress={() => dispatch(deleteTodo(props.id))}
       >
         <DeleteIcon />
       </Pressable>
     </View>
-  );
-};
+  )
+}
 
-export default TodoItem;
+export default TodoItem
 
 const styles = StyleSheet.create({
   itemContainer: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingTop: 10,
     paddingBottom: 15,
     paddingHorizontal: 15,
-    backgroundColor: "#f7f8fa",
+    backgroundColor: '#f7f8fa',
   },
   itemCheckbox: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     width: 20,
     height: 20,
     marginRight: 13,
     borderRadius: 6,
   },
   itemCheckboxCheckedIcon: {
-    shadowColor: "#000000",
+    shadowColor: '#000000',
     shadowOpacity: 0.14,
     shadowRadius: 8,
     shadowOffset: {
@@ -76,15 +72,15 @@ const styles = StyleSheet.create({
     },
   },
   itemText: {
-    marginRight: "auto",
+    marginRight: 'auto',
     paddingRight: 25,
     fontSize: 15,
     lineHeight: 20,
-    color: "#737373",
+    color: '#737373',
   },
   itemTextChecked: {
     opacity: 0.3,
-    textDecorationLine: "line-through",
+    textDecorationLine: 'line-through',
   },
   delBtn: {
     opacity: 0.8,
@@ -92,4 +88,4 @@ const styles = StyleSheet.create({
   delBtnDone: {
     opacity: 0.3,
   },
-});
+})
